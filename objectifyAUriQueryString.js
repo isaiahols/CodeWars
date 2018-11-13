@@ -31,6 +31,7 @@
 
 // // // *** Solution *** // // //
 
+// *** ------------------- Second Try (smaller)
 
 
 const convertQueryToMap = query => {
@@ -42,15 +43,53 @@ const convertQueryToMap = query => {
     if (!query) return {}
 
 
+    // split the query into separate parts and put in an array
+    const queryArray = query.split('&');
 
-    // split the query into seperate parts and put in an array
+    // loop through the array of queries
+    for (let i = 0; i < queryArray.length; i++) {
+        // for each query split on '.' and loop through
+        queryArray[i].split('.').reduce((path, item) => {
+            // if last item (has = sign) then split and assign
+            if (item.match(/=/)) {
+                let items = item.split('=');
+                path[items[0]] = decodeURIComponent(items[1])
+                return path
+            }
+            // declare a new key if none exists 
+            path[item] = path[item] ? path[item] : {};
+            // return new key as path
+            return path[item]
+        }, queryObj)
+    }
+
+    return queryObj
+
+}
+
+
+
+
+// *** ------------------- First Try (with recursion)
+
+const convertQueryToMap = query => {
+
+    // build obj to hold the query
+    const queryObj = {};
+
+    // check it query is empty string
+    if (!query) return {}
+
+
+
+    // split the query into separate parts and put in an array
     // add spaces back in
     const queryArray = query.split('&');
 
     // build recersive function to build object
     const buildObj = (arr, j, path) => {
 
-        // for simplicity make a variable to hold the curent item
+        // for simplicity make a variable to hold the current item
         let item = arr[j];
 
         // base case checks for '='
@@ -72,10 +111,10 @@ const convertQueryToMap = query => {
 
     // take each part of the array and loop through for as many layers there are
     queryArray.forEach(each => {
-        // built new array spliting on the .
+        // built new array splitting on the .
         each = each.split('.')
 
-        // recersive function to build/add to queryObject
+        // call recursive function to build/add to queryObject
         buildObj(each, 0, queryObj)
 
 
