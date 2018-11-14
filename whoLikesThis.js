@@ -11,6 +11,9 @@
 // likes["Alex", "Jacob", "Mark", "Max"] // must be "Alex, Jacob and 2 others like this"
 // For 4 or more names, the number in and 2 others simply increases.
 
+
+
+
 // // // *** Solution *** // // //
 
 const likes = names => {
