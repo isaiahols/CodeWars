@@ -26,11 +26,7 @@ const sumStrings = (a, b) => {
     // make array to hold each final digit
     let total = []
 
-    // turn strings to arrays
-    a = a.split('');
-    b = b.split('');
-
-    // loop through both arrays
+    // loop through both strings
     for (i = a.length, j = b.length; i > 0 || j > 0; i-- , j--) {
         // build variable to hold sum
         let sum;
