@@ -5,6 +5,9 @@
 
 // // // *** Solution *** // // //
 
+
+// ------ Long Version ------- //
+
 // I am going to user recursion here so I can take any number and still have this work
 //I added in a 'count' parameter and set its default to 0
 let countBits = (n, count = 0) => {
@@ -23,3 +26,7 @@ let countBits = (n, count = 0) => {
     // call its self again and pass in n and count
     return countBits(n, count)
 };
+
+
+// ------ One Liner ------- //
+const countBits = n => n.toString(2).replace(/[0]/g,'').length
