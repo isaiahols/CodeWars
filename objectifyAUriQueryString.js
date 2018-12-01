@@ -1,7 +1,7 @@
-// Kata
 // // // *** Problem *** // // //
 
 
+// Kata
 // In this kata, we want to convert a URL query string into a nested object.The query string will contain parameters that may or may not have embedded dots('.'), and these dots will be used to break up the properties into the nested object.
 
 // You will receive a string input that looks something like this:
